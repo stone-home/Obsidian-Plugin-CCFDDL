@@ -1,0 +1,7 @@
+branches:
+  - trunk
+repositoryUrl: "https://github.com/stone-home/Template-Easy-Setup-DevOps"
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/github"
