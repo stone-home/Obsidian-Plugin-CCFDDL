@@ -1,0 +1,10 @@
+{
+	"id": "sync-todo-obsidian-notion",
+	"name": "ObsidianNotion Task Sync",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Syncs tasks between Obsidian weekly notes and a Notion database.",
+	"author": "Your Name",
+	"authorUrl": "https://your-website.com",
+	"isDesktopOnly": false
+}
