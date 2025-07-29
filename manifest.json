@@ -1,10 +1,11 @@
 {
-	"id": "sync-todo-obsidian-notion",
-	"name": "ObsidianNotion Task Sync",
+	"id": "conference-deadlines",
+	"name": "Conference Deadlines",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Syncs tasks between Obsidian weekly notes and a Notion database.",
+	"description": "Display conference submission deadlines from CCF DDL in a modal",
 	"author": "Your Name",
-	"authorUrl": "https://your-website.com",
+	"authorUrl": "https://github.com/yourusername",
+	"fundingUrl": "https://buymeacoffee.com/yourusername",
 	"isDesktopOnly": false
 }

@@ -1,94 +1,88 @@
-# Obsidian Sample Plugin
+# Conference Deadlines Plugin for Obsidian
+> [!info] All content in this Readme is auto-generated from Claude AI. 
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+这是一个用于 Obsidian 的插件，可以显示来自 CCF DDL 的计算机科学会议投稿截止时间。
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## 功能特性
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- 🕒 **实时截止时间显示**：从 CCF DDL 获取最新的会议投稿截止时间
+- 📊 **分类筛选**：按学科领域（AI、DB、NW等）和CCF等级筛选会议
+- ⏰ **时间提醒**：用颜色标识紧急程度（红色=今天，橙色=一周内，绿色=安全）
+- 🔄 **自动刷新**：可配置的数据刷新间隔
+- 📱 **响应式设计**：适配不同屏幕尺寸
+- 🌙 **主题适配**：支持 Obsidian 的明暗主题
 
-## First time developing plugins?
+## 安装方法
 
-Quick starting guide for new plugin devs:
+### 手动安装
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. 下载或克隆这个仓库
+2. 将插件文件夹复制到你的 Obsidian vault 的 `.obsidian/plugins/` 目录下
+3. 重启 Obsidian
+4. 在设置中启用 "Conference Deadlines" 插件
 
-## Releasing new releases
+### 开发安装
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1. 克隆仓库到 `.obsidian/plugins/conference-deadlines/`
+2. 安装依赖：`npm install`
+3. 构建插件：`npm run build`
+4. 重启 Obsidian 并启用插件
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## 使用方法
 
-## Adding your plugin to the community plugin list
+### 基本使用
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+1. 点击左侧 ribbon 栏的日历时钟图标
+2. 或使用命令面板搜索 "Show Conference Deadlines"
+3. 在弹出的模态框中查看所有会议的截止时间
 
-## How to use
+### 筛选功能
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+- **按学科筛选**：选择特定的学科领域（如 AI、DB、NW 等）
+- **按CCF等级筛选**：选择 A、B、C 类会议或查看全部
 
-## Manually installing the plugin
+### 信息显示
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+模态框表格包含以下列：
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+- **Conference**：会议名称（可点击跳转到官网）
+- **Year**：会议年份
+- **Deadline**：投稿截止时间（包含摘要截止时间）
+- **Time Left**：剩余时间（颜色编码）
+- **Subject**：学科分类
+- **CCF**：CCF 等级（A/B/C，带颜色标识）
+- **Location**：会议地点
 
-## Funding URL
+### 时间颜色编码
 
-You can include funding URLs where people who use your plugin can financially support it.
+- 🔴 **红色加粗**：今天截止
+- 🟠 **橙色加粗**：7天内截止
+- 🟡 **黄色**：30天内截止
+- 🟢 **绿色**：30天以上
+- ⚫ **灰色**：已过期
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+## 配置选项
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+在 Obsidian 设置页面的插件设置中可以配置：
+
+- **YAML URL**：数据源地址（默认使用 CCF DDL）
+- **Refresh Interval**：数据刷新间隔（分钟）
+
+## 数据来源
+
+插件默认使用 [CCF DDL](https://ccfddl.com/) 的数据源：
+`https://ccfddl.com/conference/allconf.yml`
+
+## 开发
+
+### 项目结构
+
 ```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+conference-deadlines/
+├── main.ts              # 主插件文件
+├── manifest.json        # 插件清单
+├── styles.css          # 样式文件
+├── package.json        # NPM 配置
+├── tsconfig.json       # TypeScript 配置
+├── esbuild.config.mjs  # 构建配置
+└

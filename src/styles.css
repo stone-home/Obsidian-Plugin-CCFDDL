@@ -1,0 +1,244 @@
+/* Conference Deadlines Plugin Styles */
+
+.conference-deadlines-modal {
+	max-width: 95vw;
+	max-height: 85vh;
+	width: 95vw;
+	min-width: 1000px;
+}
+
+.conference-deadlines-modal .modal-content {
+	padding: 20px;
+	max-height: 80vh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.table-container {
+	overflow-x: auto;
+	overflow-y: auto;
+	max-height: 60vh;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+}
+
+.filter-container {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+	align-items: center;
+	flex-shrink: 0; /* 防止筛选器被压缩 */
+}
+
+.filter-container select {
+	padding: 8px;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+}
+
+.conference-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	table-layout: fixed; /* 固定表格布局以便控制列宽 */
+}
+
+/* 设置各列的宽度 */
+.conference-table th:nth-child(1),
+.conference-table td:nth-child(1) { width: 15%; } /* Conference */
+.conference-table th:nth-child(2),
+.conference-table td:nth-child(2) { width: 8%; }  /* Year */
+.conference-table th:nth-child(3),
+.conference-table td:nth-child(3) { width: 18%; } /* Deadline */
+.conference-table th:nth-child(4),
+.conference-table td:nth-child(4) { width: 12%; } /* Time Left */
+.conference-table th:nth-child(5),
+.conference-table td:nth-child(5) { width: 8%; }  /* Subject */
+.conference-table th:nth-child(6),
+.conference-table td:nth-child(6) { width: 8%; }  /* CCF */
+.conference-table th:nth-child(7),
+.conference-table td:nth-child(7) { width: 31%; } /* Location */
+
+.conference-table th,
+.conference-table td {
+	border: 1px solid var(--background-modifier-border);
+	padding: 8px 12px;
+	text-align: left;
+	white-space: normal;
+	word-wrap: break-word;
+	/*overflow: hidden;*/
+}
+
+.conference-table th {
+	background: var(--background-secondary);
+	font-weight: 600;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+.conference-table tr:nth-child(even) {
+	background: var(--background-secondary-alt);
+}
+
+.conference-table tr:hover {
+	background: var(--background-modifier-hover);
+}
+
+.conference-table a {
+	color: var(--text-accent);
+	text-decoration: none;
+}
+
+.conference-table a:hover {
+	text-decoration: underline;
+}
+
+.deadline-urgent {
+	color: var(--text-error) !important;
+	font-weight: bold;
+}
+
+.deadline-warning {
+	color: var(--text-warning) !important;
+	font-weight: bold;
+}
+
+.deadline-soon {
+	color: var(--text-warning) !important;
+}
+
+.deadline-normal {
+	color: var(--text-success) !important;
+}
+
+.deadline-passed {
+	color: var(--text-muted) !important;
+}
+
+.ccf-rank-a {
+	background: var(--background-modifier-error-hover) !important;
+	color: var(--text-error) !important;
+	font-weight: bold;
+}
+
+.ccf-rank-b {
+	background: var(--background-modifier-form-field) !important;
+	color: var(--text-warning) !important;
+	font-weight: bold;
+}
+
+.ccf-rank-c {
+	background: var(--background-modifier-cover) !important;
+	color: var(--text-accent) !important;
+}
+
+.refresh-button {
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	margin-top: 15px;
+}
+
+.refresh-button:hover {
+	background: var(--interactive-accent-hover);
+}
+
+.filter-label {
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--text-normal);
+	margin-right: 5px;
+}
+
+/* Dark theme adjustments */
+.theme-dark .conference-table th {
+	border-color: var(--background-modifier-border);
+}
+
+.theme-dark .filter-container select {
+	background: var(--background-primary);
+	border-color: var(--background-modifier-border);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1200px) {
+	.conference-deadlines-modal {
+		max-width: 98vw;
+		width: 98vw;
+		min-width: unset;
+	}
+
+	.conference-table {
+		font-size: 13px;
+	}
+}
+
+@media (max-width: 768px) {
+	.conference-deadlines-modal {
+		max-width: 95vw;
+		width: 95vw;
+		min-width: unset;
+	}
+
+	.filter-container {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.conference-table {
+		font-size: 12px;
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
+
+	.conference-table th,
+	.conference-table td {
+		padding: 6px 8px;
+		min-width: 100px;
+	}
+
+	/* 在移动端显示滚动提示 */
+	.conference-table::after {
+		content: "← 左右滑动查看更多内容 →";
+		display: block;
+		text-align: center;
+		color: var(--text-muted);
+		font-size: 11px;
+		padding: 10px;
+		font-style: italic;
+	}
+}
+
+/* Loading state */
+.loading-indicator {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	color: var(--text-muted);
+}
+
+.loading-indicator::before {
+	content: '';
+	width: 20px;
+	height: 20px;
+	border: 2px solid var(--background-modifier-border);
+	border-top: 2px solid var(--text-accent);
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-right: 10px;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
