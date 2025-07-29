@@ -1,6 +1,6 @@
 branches:
   - trunk
-repositoryUrl: "https://github.com/stone-home/Obsidian-Plugin-ZettelKasten"
+repositoryUrl: "https://github.com/stone-home/Obsidian-Plugin-CCFDDL"
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
